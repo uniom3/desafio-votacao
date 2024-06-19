@@ -1,0 +1,247 @@
+{
+	"info": {
+		"_postman_id": "f8abfa8e-2eca-4346-b92b-b9d5bd6cb8c3",
+		"name": "Desafio",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10838445"
+	},
+	"item": [
+		{
+			"name": "localhost:8080/pauta",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "c7834b6c-dc77-4a6d-a45b-e05277d02172",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "user",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"assunto\": \"Aumento de Salário dos Funcionários\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/pautas",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"pautas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/votacao",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"// Formata o timestamp atual para o formato desejado (exemplo: \"YYYY-MM-DDTHH:mm:ss\")\r",
+							"var currentTimestamp = new Date();\r",
+							"var formattedTimestamp = `${currentTimestamp.getFullYear()}-${padZero(currentTimestamp.getMonth() + 1)}-${padZero(currentTimestamp.getDate())}T${padZero(currentTimestamp.getHours())}:${padZero(currentTimestamp.getMinutes())}:${padZero(currentTimestamp.getSeconds())}`;\r",
+							"\r",
+							"pm.variables.set(\"formatTimestamp\", formattedTimestamp);\r",
+							"\r",
+							"function padZero(num) {\r",
+							"    return num < 10 ? '0' + num : num;\r",
+							"}\r",
+							"    "
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"pauta\": {\r\n    \"id\": \"1\",\r\n     \"assunto\": \"Aumento de Salário dos Funcionários\"\r\n  },\r\n  \"horarioInicial\": \"{{formatTimestamp}}\",\r\n  \"votos\": [\r\n    \r\n  ]\r\n}\r\n\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/votacoes",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"votacoes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/voto",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"// Formata o timestamp atual para o formato desejado (exemplo: \"YYYY-MM-DDTHH:mm:ss\")\r",
+							"var currentTimestamp = new Date();\r",
+							"var formattedTimestamp = `${currentTimestamp.getFullYear()}-${padZero(currentTimestamp.getMonth() + 1)}-${padZero(currentTimestamp.getDate())}T${padZero(currentTimestamp.getHours())}:${padZero(currentTimestamp.getMinutes())}:${padZero(currentTimestamp.getSeconds())}`;\r",
+							"\r",
+							"pm.variables.set(\"formatTimestamp\", formattedTimestamp);\r",
+							"\r",
+							"function padZero(num) {\r",
+							"    return num < 10 ? '0' + num : num;\r",
+							"}\r",
+							"    "
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"cpf\": \"23067301803\",\r\n  \"vote\": false,\r\n  \"horarioDoVoto\": \"{{formatTimestamp}}\",\r\n  \"votacao\": {\r\n    \"id\":\"71\",\r\n    \"pauta\": {\r\n    \"id\": \"1\",\r\n     \"assunto\": \"Aumento de Salário dos Funcionários\"\r\n  },\r\n  \"votos\": [\r\n    \r\n  ]\r\n}\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/votos",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"votos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/pauta",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/pautas",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"pautas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/voto",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/votos",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"votos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/votacao",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/votacoes",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"votacoes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8081/api/cpf/230673",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8081/api/cpf/230673018",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"cpf",
+						"230673018"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/validador/230673018",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/validador/23067301803",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"validador",
+						"23067301803"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
