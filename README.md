@@ -13,7 +13,7 @@ Este é um projeto de exemplo de um sistema de votação, desenvolvido em Java u
 - Spring Boot 3.3.0
 - Spring Data JPA
 - Lombok
-- H2 Database (ou outro banco de dados de sua escolha)
+- H2 Database
 - Spring Web
 
 ## Configuração do Projeto
@@ -22,8 +22,7 @@ collection Postman na raiz do projeto : Desafio.postman_collection.json.
 Criado properties: application-dev.properties para organizar as configurações.
 
 
-### 1. Clonar o Repositório
+## 1. Clonar o Repositório
 
-```bash
 git clone https://github.com/uniom3/desafio-votacao.git
 cd desafio-votacao
